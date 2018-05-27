@@ -1,122 +1,119 @@
-﻿using SampleLibProject;
-using SampleStandardProject;
+﻿using SideProj;
 using UnityEngine;
 
-namespace SampleProject
+namespace MainProj
 {
     public class Main : MonoBehaviour
     {
         public void Start()
         {
-            TestSampleClass();
-            TestSampleLibClass();
-            TestSamplePluginClass();
-            TestSampleStandardClass();
+            TestMainClass();
+            TestLibClass();
+            TestPluginClass();
+            TestStandardClass();
 
-            TestSampleSubClass();
-            TestSampleSubLibClass();
-            TestSampleSubPluginClass();
-            TestSampleSubStandardClass();
+            TestSubClass();
+            TestLibSubClass();
+            TestPluginSubClass();
+            TestStandardSubClass();
         }
 
-        private void TestSampleClass()
+        private void TestMainClass()
         {
-            var sampleClass = new SampleClass();
-            sampleClass.PublicMethod();
-#if COMPILE_ERROR
-            sampleClass.ProtectedMethod();
-#endif
-            sampleClass.ProtectedInternalMethod();
-            sampleClass.InternalMethod();
-#if COMPILE_ERROR
-            sampleClass.PrivateMethod();
-#endif
+            var instance = new MainClass();
+            instance.PublicMethod();
+#warning Cannot call protected method from not derived class in same namespace and same assembly
+            //instance.ProtectedMethod();
+            instance.InternalMethod();
+            instance.ProtectedInternalMethod();
+#warning Cannot call private method from any class in same namespace and same assembly
+            //instance.PrivateMethod();
         }
 
-        private void TestSampleLibClass()
+        private void TestLibClass()
         {
-            var sampleLibClass = new SampleLibClass();
-            sampleLibClass.PublicMethod();
-#if COMPILE_ERROR
-            sampleLibClass.ProtectedMethod();
-#endif
-            sampleLibClass.ProtectedInternalMethod();
-            sampleLibClass.InternalMethod();
-#if COMPILE_ERROR
-            sampleLibClass.PrivateMethod();
-#endif
+            var instance = new LibClass();
+            instance.PublicMethod();
+#warning Cannot call protected method from not derived class in different namespace but same assembly
+            //instance.ProtectedMethod();
+            instance.InternalMethod();
+            instance.ProtectedInternalMethod();
+#warning Cannot call private method from any class in different namespace but same assembly
+            //instance.PrivateMethod();
         }
 
-        private void TestSamplePluginClass()
+        private void TestPluginClass()
         {
-            var samplePluginClass = new SamplePluginClass();
-            samplePluginClass.PublicMethod();
-#if COMPILE_ERROR
-            samplePluginClass.ProtectedMethod();
-            samplePluginClass.ProtectedInternalMethod();
-            samplePluginClass.InternalMethod();
-            samplePluginClass.PrivateMethod();
-#endif
+            var instance = new PluginClass();
+            instance.PublicMethod();
+#warning Cannot call protected method from not derived class in same namespace but different assembly
+            //instance.ProtectedMethod();
+#warning Cannot call internal method from any class in same namespace but different assembly
+            //instance.InternalMethod();
+#warning Cannot call protected internal method from not derived class in same namespace but different assembly
+            //instance.ProtectedInternalMethod();
+#warning Cannot call private method from any class in same namespace but different assembly
+            //instance.PrivateMethod();
         }
 
-        private void TestSampleStandardClass()
+        private void TestStandardClass()
         {
-            var sampleStandardClass = new SampleStandardClass();
-            sampleStandardClass.PublicMethod();
-#if COMPILE_ERROR
-            sampleStandardClass.ProtectedMethod();
-            sampleStandardClass.ProtectedInternalMethod();
-            sampleStandardClass.InternalMethod();
-            sampleStandardClass.PrivateMethod();
-#endif
+            var instance = new StandardClass();
+            instance.PublicMethod();
+#warning Cannot call protected method from not derived class in different namespace and different assembly
+            //instance.ProtectedMethod();
+#warning Cannot call internal method from any class in different namespace and different assembly
+            //instance.InternalMethod();
+#warning Cannot call protected internal method from not derived class in different namespace and different assembly
+            //instance.ProtectedInternalMethod();
+#warning Cannot call private method from any class in different namespace and different assembly
+            //instance.PrivateMethod();
         }
 
-        private void TestSampleSubClass()
+        private void TestSubClass()
         {
-            var sampleSubClass = new SampleSubClass();
-            sampleSubClass.DoPublicMethod();
-            sampleSubClass.DoProtectedMethod();
-            sampleSubClass.DoProtectedInternalMethod();
-            sampleSubClass.DoInternalMethod();
-#if COMPILE_ERROR
-            sampleSubClass.DoPrivateMethod();
-#endif
+            var instance = new MainSubClass();
+            instance.InvokePublicMethod();
+            instance.InvokeProtectedMethod();
+            instance.InvokeInternalMethod();
+            instance.InvokeProtectedInternalMethod();
+#warning Cannot call private method from any class in different namespace and different assembly
+            //instance.InvokePrivateMethod();
         }
 
-        private void TestSampleSubLibClass()
+        private void TestLibSubClass()
         {
-            var sampleSubLibClass = new SampleSubLibClass();
-            sampleSubLibClass.DoPublicMethod();
-            sampleSubLibClass.DoProtectedMethod();
-            sampleSubLibClass.DoProtectedInternalMethod();
-            sampleSubLibClass.DoInternalMethod();
-#if COMPILE_ERROR
-            sampleSubLibClass.DoPrivateMethod();
-#endif
+            var instance = new LibSubClass();
+            instance.InvokePublicMethod();
+            instance.InvokeProtectedMethod();
+            instance.InvokeInternalMethod();
+            instance.InvokeProtectedInternalMethod();
+#warning Cannot call private method from any class in different namespace and different assembly
+            //instance.InvokePrivateMethod();
         }
 
-        private void TestSampleSubPluginClass()
+        private void TestPluginSubClass()
         {
-            var sampleSubPluginClass = new SampleSubPluginClass();
-            sampleSubPluginClass.DoPublicMethod();
-            sampleSubPluginClass.DoProtectedMethod();
-            sampleSubPluginClass.DoProtectedInternalMethod();
-#if COMPILE_ERROR
-            sampleSubPluginClass.DoInternalMethod();
-            sampleSubPluginClass.DoPrivateMethod();
-#endif
+            var instance = new PluginSubClass();
+            instance.InvokePublicMethod();
+            instance.InvokeProtectedMethod();
+#warning Cannot call internal method from any class in different namespace and different assembly
+            //instance.InvokeInternalMethod();
+            instance.InvokeProtectedInternalMethod();
+#warning Cannot call private method from any class in different namespace and different assembly
+            //instance.InvokePrivateMethod();
         }
 
-        private void TestSampleSubStandardClass()
+        private void TestStandardSubClass()
         {
-            var sampleSubStandardClass = new SampleSubStandardClass();
-            sampleSubStandardClass.DoPublicMethod();
-            sampleSubStandardClass.DoProtectedMethod();
-            sampleSubStandardClass.DoProtectedInternalMethod();
-#if COMPILE_ERROR
-            sampleSubStandardClass.DoInternalMethod();
-            sampleSubStandardClass.DoPrivateMethod();
-#endif
+            var instance = new StandardSubClass();
+            instance.InvokePublicMethod();
+            instance.InvokeProtectedMethod();
+#warning Cannot call internal method from any class in different namespace and different assembly
+            //instance.InvokeInternalMethod();
+            instance.InvokeProtectedInternalMethod();
+#warning Cannot call private method from any class in different namespace and different assembly
+            //instance.InvokePrivateMethod();
         }
     }
 }

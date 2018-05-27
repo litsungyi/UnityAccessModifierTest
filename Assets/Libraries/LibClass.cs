@@ -1,6 +1,6 @@
-﻿namespace SampleProject
+﻿namespace SideProj
 {
-    public class SamplePluginClass
+    public class LibClass
     {
         public void PublicMethod()
         {
@@ -30,7 +30,8 @@
         [System.Diagnostics.Conditional("ENABLE_LOG")]
         private void ShowLog(string method)
         {
-            UnityEngine.Debug.Log(this.GetType().Name + "." + method);
+            var type = GetType();
+            UnityEngine.Debug.Log(string.Format("{0}.{1}.{2}", type.Namespace, type.Name, method));
         }
     }
 }

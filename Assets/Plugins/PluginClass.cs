@@ -1,6 +1,6 @@
-﻿namespace SampleLibProject
+﻿namespace MainProj
 {
-    public class SampleLibClass
+    public class PluginClass
     {
         public void PublicMethod()
         {
@@ -30,7 +30,8 @@
         [System.Diagnostics.Conditional("ENABLE_LOG")]
         private void ShowLog(string method)
         {
-            UnityEngine.Debug.Log(this.GetType().Name + "." + method);
+            var type = GetType();
+            UnityEngine.Debug.Log(string.Format("{0}.{1}.{2}", type.Namespace, type.Name, method));
         }
     }
 }
