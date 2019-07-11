@@ -1,0 +1,8 @@
+{
+    "name": "Scene1.Editor",
+    "references": [
+        "Scene1"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}

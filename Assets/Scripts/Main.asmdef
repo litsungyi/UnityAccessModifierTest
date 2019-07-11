@@ -1,0 +1,8 @@
+{
+    "name": "Main",
+    "references": [
+        "Library"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}

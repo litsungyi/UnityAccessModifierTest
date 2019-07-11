@@ -1,0 +1,11 @@
+{
+    "name": "Scene1",
+    "references": [
+        "Library",
+        "Main"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "Editor"
+    ]
+}
